@@ -1,6 +1,6 @@
 # Sway TUI style (Vanta Black Theme)
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/095defd4-050d-485f-87c6-6758c1d4672b" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/d0c82127-d04a-4a4b-89f4-cdf49bd2fa6c" />
 
 ## Programs
 
