@@ -1,1 +1,1 @@
-# Sway-TUI-style-Vanta-Black
+# Sway TUI style (Vanta Black Theme)
