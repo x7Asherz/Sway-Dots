@@ -1,0 +1,136 @@
+# --- 1. Variables ---
+set $mod Mod4
+set $term foot
+set $file ranger
+
+# bemenu (ASCII black/white)
+set $menu bemenu-run -i -b -l 5 -p "RUN:" \
+--fn "Fixedsys Excelsior 12" \
+--nb "#000000" --nf "#ffffff" \
+--hb "#ffffff" --hf "#000000"
+
+# --- 2. Input ---
+input * {
+    xkb_layout "us,th"
+    xkb_options "grp:win_space_toggle"
+}
+
+# --- Mouse window move ---
+floating_modifier $mod normal
+
+# --- 3. Autostart ---
+exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec_always systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+exec_always wl-paste --type text --watch cliphist store
+
+# --- 4. Apps ---
+bindsym $mod+t exec $term
+bindsym $mod+a exec $menu
+bindsym $mod+e exec foot -e ranger
+bindsym $mod+q kill
+
+# reload / exit
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+Escape exec swaynag -t warning -m "exit sway?" -b "yes" "swaymsg exit"
+
+# --- Volume ---
+bindsym F10 exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym F11 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym F12 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+
+# lock
+bindsym $mod+Shift+x exec swaylock -c 000000
+
+# --- 5. Focus ---
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# --- 6. Move ---
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# --- 7. Workspaces 1-9 ---
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+
+# --- 9. Layout ---
+bindsym $mod+w floating toggle
+bindsym $mod+s layout stacking
+bindsym $mod+d layout tabbed
+
+bindsym $mod+f fullscreen
+
+# --- 10. Resize Mode ---
+mode "resize" {
+    bindsym h resize shrink width 11px
+    bindsym j resize grow height 11px
+    bindsym k resize shrink height 11px
+    bindsym l resize grow width 11px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# --- 11. Screenshot ---
+bindsym Print exec grimshot save screen ~/Pictures/screenshot-$(date +%s).png
+bindsym Shift+Print exec grimshot copy area 
+
+# --- 12. Borders ---
+default_border pixel 3
+smart_borders no
+gaps inner 7
+
+# --- 13. ASCII Black/White Theme ---
+client.focused          #ffffff #ffffff #ffffff #ffffff
+client.focused_inactive #bbbbbb #bbbbbb #bbbbbb #bbbbbb
+client.unfocused        #888888 #888888 #888888 #888888
+
+# --- 14. Minimal Bar ---
+bar {
+    position top
+    font pango:monospace 12
+    tray_output none
+
+    status_command ~/.config/sway/status.sh
+
+    colors {
+        background #000000
+        statusline #ffffff
+        focused_workspace #ffffff #000000 #ffffff
+        inactive_workspace #000000 #000000 #777777
+    }
+
