@@ -14,3 +14,6 @@
 - grim
 - slurp
 - wl-clipboard
+
+# Font
+- Fixedsys Excelsior
