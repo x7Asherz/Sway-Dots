@@ -3,7 +3,7 @@ set $mod Mod4
 set $term foot
 set $file ranger
 
-# bemenu (ASCII black/white)
+# bemenu (black/white)
 set $menu bemenu-run -i -b -l 5 -p "RUN:" \
 --fn "Fixedsys Excelsior 12" \
 --nb "#000000" --nf "#ffffff" \
@@ -34,7 +34,7 @@ bindsym $mod+q kill
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+Escape exec swaynag -t warning -m "exit sway?" -b "yes" "swaymsg exit"
 
-# --- Volume ---
+# --- Volume Control ---
 bindsym F10 exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 bindsym F11 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 bindsym F12 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
@@ -114,7 +114,7 @@ default_border pixel 3
 smart_borders no
 gaps inner 7
 
-# --- 13. ASCII Black/White Theme ---
+# --- 13. Focus/Unfocus (Black/White Theme) ---
 client.focused          #ffffff #ffffff #ffffff #ffffff
 client.focused_inactive #bbbbbb #bbbbbb #bbbbbb #bbbbbb
 client.unfocused        #888888 #888888 #888888 #888888
