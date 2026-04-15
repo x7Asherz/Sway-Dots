@@ -17,3 +17,6 @@
 
 # Font
 - Fixedsys Excelsior
+
+To make the tatus script work, Use this command
+'chmod +x ~/.config/sway/status.sh'
